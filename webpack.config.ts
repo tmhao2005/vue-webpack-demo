@@ -6,10 +6,13 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 export default {
   entry: {
-    index: './src/index.js',
+    index: './src/index.js',    
+  },
+  output: {    
+    publicPath: '/',
   },
   resolve: {
-    extensions: [ '.js', '.vue' ],
+    extensions: ['.js', '.vue' ],
   },
   mode: 'development',
   devtool: false,
@@ -39,6 +42,17 @@ export default {
           },
           'sass-loader'          
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader:"file-loader",
+        options:{
+          name:'[name].[ext]',
+          outputPath:'assets/images/'
+        },
+        include: [
+          /node_modules/
+        ]
       }
     ]
   },
@@ -49,5 +63,12 @@ export default {
       template: './index.ejs',
       filename: 'index.html'
     }),
-  ]
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      'window.jQuery': 'jquery',
+      'window.$': 'jquery',
+      "Foo": "jquery"
+    }),
+  ],
 } as webpack.Configuration;

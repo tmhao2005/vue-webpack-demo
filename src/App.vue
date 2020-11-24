@@ -1,5 +1,5 @@
 <template>
-  <h1 class="header">{{ name }}</h1>
+  <h1 class="header">Hello {{ name }}</h1>
 </template>
 
 <script>
@@ -7,8 +7,11 @@
     name: 'Foo',
     data() {
       return {
-        name: 'Foo'
+        name: 'tmhao2005'
       }
+    },
+    created() {
+      console.log('created x3')
     }
   }
 </script>
